@@ -11,10 +11,11 @@ const mainRouter = require('./app/route/main-routes');
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || process.env.SERVER_PORT;
 
 /**register main router*/
 app.use('/api', mainRouter);
+
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 });
