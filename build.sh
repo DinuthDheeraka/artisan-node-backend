@@ -3,10 +3,6 @@
 # Print a message indicating that the build.sh script is running
 echo "Running build.sh"
 
-# Navigate to the directory containing your Node.js application
-# shellcheck disable=SC2164
-cd /home/ubuntu/artisan-node-backend || exit
-
 # Fetch the latest changes from the remote repository
 git fetch || exit
 
