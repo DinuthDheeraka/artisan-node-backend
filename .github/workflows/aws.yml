@@ -12,9 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Navigate to home directory
-        run: cd /home/ubuntu
-
       - name: Make script executable
         run: chmod +x example.sh
 
