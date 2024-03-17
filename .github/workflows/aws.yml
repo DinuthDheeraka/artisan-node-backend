@@ -1,19 +1,12 @@
-name: Run example.sh on push to master
+name: Run build.sh
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:  # This triggers the workflow manually
 
 jobs:
   run_script:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Make script executable
-        run: chmod +x build.sh
-
-      - name: Run script
-        run: ./build.sh
+      - name: Run build.sh
+        run: |
+          bash /home/ubuntu/build.sh
