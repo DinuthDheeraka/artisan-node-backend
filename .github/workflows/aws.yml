@@ -11,14 +11,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3  # Checkout your code
 
-      - name: Connect to EC2 (using SSH key)  # Assuming SSH key setup
+      - name: Add SSH key (optional, consider alternative secret management)**
+        run: |
+          mkdir -p ~/.ssh  # Create SSH directory if it doesn't exist
+          chmod 600 ~/.ssh  # Set appropriate permissions
+          echo ${{ secrets.EC2_KEY }} | tr -d '\r' > ~/.ssh/id_rsa  # Decrypt and store private key (consider using a secrets manager)
+          chmod 600 ~/.ssh/id_rsa  # Set strict permissions for private key
+          eval "$(ssh-agent -s)"  # Start SSH agent (optional if using passwordless SSH)
+          ssh-add ~/.ssh/id_rsa  # Add private key to agent (optional if using passwordless SSH)
+
+      - name: Connect to EC2 (using SSH)**
         uses: appleboy/ssh-action@master  # Use SSH action for deployment
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_KEY }}  # Encrypted private SSH key stored in a secret
 
-      - name: Run custom script
+      - name: Run custom script**
         run: |
-          ssh ubuntu@${{ secrets.EC2_HOST }} "cd /home/ubuntu && ./build.sh"  # Execute script on EC2
+          cd /home/ubuntu && ./build.sh
 
