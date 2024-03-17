@@ -1,18 +1,11 @@
-const authService = require('../util/jwt-util');
+const authService = require('../service/auth-service');
 
-const login = async (req, res) => {
-
-    const accessTokens = authService.createAccessAndRefreshTokens({username: 'username'});
-
-    res.status(200).json(
-        {
-            success: true,
-            statusCode: 200,
-            accessToken: accessTokens.accessToken,
-            refreshToken: accessTokens.refreshToken
-        }
-    );
-
+const login = async (req, res, next) => {
+    try {
+        return res.status(200).json(await authService.login(req.body));
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 module.exports = {login};
