@@ -1,8 +1,9 @@
 ### Send POST request with json body
-POST http://localhost:3000/api/v1/auth/login
+POST http://localhost:3000/api/v1/user
 Content-Type: application/json
 
 {
+  "name": "dinuth dheeraka",
   "email": "dinuthdheeeraka@gmail.com",
   "password": "1234"
 }
