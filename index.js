@@ -13,6 +13,9 @@ const app = express();
 
 const port = process.env.PORT || process.env.SERVER_PORT;
 
+/**parse json body*/
+app.use(express.json());
+
 /**register main router*/
 app.use('/api', mainRouter);
 
