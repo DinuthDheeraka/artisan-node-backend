@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3  # Checkout your code
 
       - name: Connect to EC2 (using SSH key)  # Assuming SSH key setup
-        uses: appleboy/ssh-action@v3  # Use SSH action for deployment
+        uses: appleboy/ssh-action@master  # Use SSH action for deployment
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
