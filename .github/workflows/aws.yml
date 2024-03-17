@@ -1,0 +1,23 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ master ]  # Trigger on push to master branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use a Linux runner
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout your code
+
+      - name: Connect to EC2 (using SSH key)  # Assuming SSH key setup
+        uses: appleboy/ssh-action@v3  # Use SSH action for deployment
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_KEY }}  # Encrypted private SSH key stored in a secret
+
+      - name: Run custom script
+        run: |
+          ssh ubuntu@${{ secrets.EC2_HOST }} "cd /home/ubuntu && ./build.sh"  # Execute script on EC2
