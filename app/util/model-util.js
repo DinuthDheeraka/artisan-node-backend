@@ -1,6 +1,6 @@
 const findOneByModel = async (model, filter) => {
     try {
-        return await model.findOne(filter)
+        return await model.findOne(filter);
     } catch (e) {
         throw e;
     }
