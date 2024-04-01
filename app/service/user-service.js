@@ -1,7 +1,5 @@
 const jwtUtil = require('../util/jwt-util');
 const User = require('../model/User');
-const e = require("express");
-const {genSalt, hash} = require("bcrypt");
 const {UserException} = require("../exception/UserException");
 const {findOneByModel} = require("../util/model-util");
 const {generateBcryptHash} = require("../util/hash-util");
