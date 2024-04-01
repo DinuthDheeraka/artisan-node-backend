@@ -2,7 +2,7 @@ const jwtUtil = require('../util/jwt-util');
 const User = require('../model/User');
 const e = require("express");
 const {genSalt, hash} = require("bcrypt");
-
+const {UserException} = require("../exception/UserException");
 const saveUser = async ({name, email, password}) => {
     try {
         console.log("start function saveUser");
@@ -14,7 +14,7 @@ const saveUser = async ({name, email, password}) => {
 
         /**throw if email is already taken*/
         if (userByEmail) {
-            throw new Error("Email is already exists!");
+            throw new UserException("Email is already exists!", 200, false);
         }
 
         /**bcrypt password*/
@@ -45,11 +45,7 @@ const saveUser = async ({name, email, password}) => {
         };
 
     } catch (err) {
-        return {
-            success: false,
-            statusCode: 200,
-            message: err.message
-        };
+        throw err;
     }
 }
 
