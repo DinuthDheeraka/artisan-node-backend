@@ -5,13 +5,18 @@ const jwtAccessTokenExpiration = process.env.JWT_ACCESS_TOKEN_EXPIRATION;
 const jwtRefreshTokenExpiration = process.env.JWT_REFRESH_TOKEN_EXPIRATION;
 
 const createAccessAndRefreshTokens = async (payload) => {
+    try {
 
-    const accessToken = jwt.sign(payload, jwtSecretKey, {expiresIn: jwtAccessTokenExpiration});
+        const accessToken = jwt.sign(payload, jwtSecretKey, {expiresIn: jwtAccessTokenExpiration});
 
-    const refreshToken = jwt.sign(payload, jwtSecretKey, {expiresIn: jwtRefreshTokenExpiration});
+        const refreshToken = jwt.sign(payload, jwtSecretKey, {expiresIn: jwtRefreshTokenExpiration});
 
-    return {
-        accessToken, refreshToken
+        return {
+            accessToken, refreshToken
+        }
+
+    } catch (e) {
+        throw e;
     }
 }
 

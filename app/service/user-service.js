@@ -5,8 +5,12 @@ const {findOneByModel} = require("../util/model-util");
 const {generateBcryptHash} = require("../util/hash-util");
 
 /**
- * function for save new user
- * */
+ * @description function for save user
+ * @param name
+ * @param email
+ * @param password
+ */
+
 const saveUser = async ({name, email, password}) => {
     try {
         console.log(`start function saveUser @params name:${name} email:${email} password:${password}`);
@@ -41,7 +45,8 @@ const saveUser = async ({name, email, password}) => {
 
         /**generate tokens
          * */
-        const tokens = await jwtUtil.createAccessAndRefreshTokens({username: email});
+        const tokens = await jwtUtil.createAccessAndRefreshTokens
+        ({username: email});
 
         return {
             success: true,
