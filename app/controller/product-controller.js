@@ -25,7 +25,7 @@ const saveProduct = async (req, res) => {
 
 const findAllProducts = async (req, res) => {
     try {
-        return res.status(200).json(await productService.findAll());
+        return res.status(200).json(await productService.findAll(req.query));
     } catch (e) {
         return res.status(200).json(await exceptionHandler(e));
     }

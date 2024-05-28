@@ -18,7 +18,9 @@ productRouter.post('/', upload.fields([{name: 'img1', maxCount: 1}, {
     name: 'img2',
     maxCount: 1
 }]), productController.saveProduct);
+
 productRouter.get('/', productController.findAllProducts);
+
 productRouter.get('/:id', productController.findById);
 
 module.exports = productRouter;

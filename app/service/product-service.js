@@ -29,12 +29,27 @@ const saveProduct = async (data, files) => {
     }
 }
 
-const findAll = async () => {
+const findAll = async ({gender, category}) => {
     try {
+
+        const filter = {};
+
+        // make filter
+        if (gender) {
+            filter['gender'] = gender;
+        }
+        if (category) {
+            filter['category'] = category;
+        }
+
+        console.log(filter)
+
+        const products = await Product.find(filter, undefined, undefined);
+
         return {
             success: true,
             statusCode: 200,
-            data: await Product.find(undefined, undefined, undefined)
+            data: products
         }
     } catch (e) {
         throw e;
