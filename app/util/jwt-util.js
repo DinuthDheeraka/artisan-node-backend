@@ -16,6 +16,7 @@ const createAccessAndRefreshTokens = async (payload) => {
         }
 
     } catch (e) {
+        console.log(e);
         throw e;
     }
 }

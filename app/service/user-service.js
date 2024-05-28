@@ -8,12 +8,21 @@ const {generateBcryptHash} = require("../util/hash-util");
  * @description function for save user
  * @param name
  * @param email
+ * @param phoneNumber
+ * @param homeAddress
  * @param password
+ * @param accountType
  */
 
-const saveUser = async ({name, email, password}) => {
+const saveUser = async ({name, email, phoneNumber, homeAddress, password, accountType}) => {
     try {
-        console.log(`start function saveUser @params name:${name} email:${email} password:${password}`);
+        console.log(`start function saveUser 
+        @params name:${name} 
+        email:${email} 
+        password:${password} 
+        phoneNumber:${phoneNumber} 
+        homeAddress:${homeAddress}
+        accountType:${accountType}`);
 
         /**
          * check if user already exists with given email
@@ -33,9 +42,11 @@ const saveUser = async ({name, email, password}) => {
         /**create user obj
          * */
         const user = new User({
-                name: name,
                 email: email,
-                password: hashedPassword
+                phoneNumber: phoneNumber,
+                homeAddress: homeAddress,
+                password: hashedPassword,
+                accountType: accountType
             }
         );
 
