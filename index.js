@@ -9,6 +9,7 @@ require('./app/db/connection');
 
 /**importing main router*/
 const mainRouter = require('./app/route/main-routes');
+const {mainRoutesFilter} = require("./app/util/routes-filter-util");
 
 /**define cors options*/
 const corsOptions = {
@@ -22,6 +23,9 @@ const app = express();
 app.use(cors(corsOptions));
 
 const port = process.env.PORT || process.env.SERVER_PORT;
+
+/**routes auth filter*/
+app.use(mainRoutesFilter);
 
 /**parse json body*/
 app.use(express.json());
