@@ -4,7 +4,7 @@ const User = require("../model/User");
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-const openRoutes = ['/api/v1/auth/login', '/api/v1/user', '/api/image'];
+const openRoutes = ['/api/v1/auth/login', '/api/v1/user/', '/api/image'];
 
 function checkIfRouteIsOpen(routes) {
     return openRoutes.includes(routes);

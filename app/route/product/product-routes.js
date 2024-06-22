@@ -14,10 +14,8 @@ const upload = multer({
     }
 });
 
-productRouter.post('/', upload.fields([{name: 'img1', maxCount: 1}, {
-    name: 'img2',
-    maxCount: 1
-}]), productController.saveProduct);
+productRouter.post('/', upload.fields([
+    {name: 'img1', maxCount: 1}, {name: 'img2', maxCount: 1}]), productController.saveProduct);
 
 productRouter.get('/', productController.findAllProducts);
 

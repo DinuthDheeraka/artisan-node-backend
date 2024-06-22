@@ -8,8 +8,11 @@ const {existsSync, readFile} = require("node:fs");
 const mainRouter = express.Router();
 
 mainRouter.use('/v1/auth', authRouter);
+
 mainRouter.use('/v1/user', userRouter);
+
 mainRouter.use('/v1/product', productRouter);
+
 mainRouter.get('/image', (req, res) => {
     // Read the image file (replace 'path_to_your_image.jpg' with the actual path to your image file)
     const {path} = req.query;
