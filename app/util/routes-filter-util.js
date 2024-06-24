@@ -14,14 +14,14 @@ async function checkToken(req, res) {
     try {
         const jwt = (req.get('Authorization').replace('bearer ', ''));
 
-        console.log(jwt);
+        // console.log(jwt);
 
         const result = (jsonwebtoken.verify(jwt, jwtSecretKey));
 
         //find user by email
         const user = await findOneByModel(User, {email: result.username});
 
-        console.log(user);
+        // console.log(user);
 
         return 200;
     } catch (error) {
