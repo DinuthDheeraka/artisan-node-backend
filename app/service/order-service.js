@@ -19,6 +19,9 @@ const saveOrder = async (data) => {
 
             orderItems.push({
                 itemId: item['id'],
+                itemImg: productById['img1'],
+                itemName: productById['name'],
+                itemSize: productById['size'],
                 qty: item['selectedQty'],
                 price: item['price']
             });
@@ -45,9 +48,41 @@ const saveOrder = async (data) => {
     }
 }
 
+const findOrdersByUser = async (data) => {
+    try {
+
+        const {user_id} = data;
+
+        console.log(user_id)
+
+        return {
+            statusCode: 200,
+            success: true,
+            data: await Order.find({userId: user_id}, undefined, undefined)
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
+
+const findOrderById = async (data) => {
+    try {
+
+        return {
+            statusCode: 200,
+            success: true,
+            data: await Order.findOne({orderId: data}, undefined, undefined)
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
+
 function generateOrderId() {
     return `ORD-${Math.floor(Date.now() / 1000)}`;
 }
 
 
-module.exports = {saveOrder};
+module.exports = {saveOrder, findOrdersByUser, findOrderById};
